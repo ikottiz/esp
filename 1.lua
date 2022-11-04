@@ -40,11 +40,11 @@ do --script part
         outline = draw("Square",{Size = Vector2.new(140,68),Position = Vector2.new(10,300),Filled = false,Color = Color3.fromRGB(176,50,176),ZIndex = 1,Visible = true,Thickness = 1}),
         frame = draw("Square",{Size = Vector2.new(138,66),Position = Vector2.new(11,301),Filled = true,Color = Color3.fromRGB(26,26,26),ZIndex = 2,Visible = true,Thickness = 0}),
         names = draw("Text",{Size = 13,Font = 2,Position = Vector2.new(12,300),Color = Color3.fromRGB(233,233,233),ZIndex = 3,Visible = true}),
-        status1 = draw("Text",{Size = 13,Font = 2,Position = Vector2.new(75,300),Color = Color3.fromRGB(233,233,233),ZIndex = 3,Visible = true}),
-        status2 = draw("Text",{Size = 13,Font = 2,Position = Vector2.new(75,313),Color = Color3.fromRGB(233,233,233),ZIndex = 3,Visible = true}),
-        status3 = draw("Text",{Size = 13,Font = 2,Position = Vector2.new(75,325),Color = Color3.fromRGB(233,233,233),ZIndex = 3,Visible = true}),
-        status4 = draw("Text",{Size = 13,Font = 2,Position = Vector2.new(75,338),Color = Color3.fromRGB(233,233,233),ZIndex = 3,Visible = true}),
-        status5 = draw("Text",{Size = 13,Font = 2,Position = Vector2.new(75,352),Color = Color3.fromRGB(233,233,233),ZIndex = 3,Visible = true}),
+        status1 = draw("Text",{Size = 13,Font = 2,Position = Vector2.new(105,300),Color = Color3.fromRGB(233,233,233),ZIndex = 3,Visible = true}),
+        status2 = draw("Text",{Size = 13,Font = 2,Position = Vector2.new(105,313),Color = Color3.fromRGB(233,233,233),ZIndex = 3,Visible = true}),
+        status3 = draw("Text",{Size = 13,Font = 2,Position = Vector2.new(105,325),Color = Color3.fromRGB(233,233,233),ZIndex = 3,Visible = true}),
+        status4 = draw("Text",{Size = 13,Font = 2,Position = Vector2.new(105,338),Color = Color3.fromRGB(233,233,233),ZIndex = 3,Visible = true}),
+        status5 = draw("Text",{Size = 13,Font = 2,Position = Vector2.new(105,352),Color = Color3.fromRGB(233,233,233),ZIndex = 3,Visible = true}),
     }
     userInputService.InputBegan:Connect(onInputBegan)
     runService.RenderStepped:Connect(function()
