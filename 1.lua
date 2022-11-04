@@ -55,7 +55,7 @@ do --script part
                 v.Visible = true
             end
         end
-        uiObjects.names.Text = 'ESP:\nTracers:\nBoxes:\nSelf:\nUI:'
+        uiObjects.names.Text = '[F1]ESP:\n[F2]Tracers:\n[F3]Boxes:\n[F4]Self:\n[F5]UI:'
         --
         uiObjects.status1.Text = tostring(data.ESP)
         if data.ESP == true then
