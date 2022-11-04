@@ -5,7 +5,7 @@ local players = game:GetService('Players')
 local player = players.LocalPlayer
 local camera = game.Workspace.CurrentCamera
 local data = {
-    ESP = false,
+    ESP = true,
     Boxes = false,
     Tracers = false,
     Self = false,
@@ -36,10 +36,10 @@ do --script part
             data.UI = not data.UI
         end
     end
-    local uiObjects = {
-        outline = draw("Square",{Size = Vector2.new(200,120),Position = Vector2.new(10,300),Filled = false,Color = Color3.fromRGB(176,50,176),ZIndex = 1,Visible = true,Thickness = 1}),
-        frame = draw("Square",{Size = Vector2.new(198,118),Position = Vector2.new(11,301),Filled = true,Color = Color3.fromRGB(26,26,26),ZIndex = 2,Visible = true,Thickness = 0}),
-        status = draw("Text",{Size = 23,Font = 1,Position = Vector2.new(18,300),Color = Color3.fromRGB(244,244,244),Center = false,Outline = true,ZIndex = 3,Visible = true}),
+    uiObjects = {
+        outline = draw("Square",{Size = Vector2.new(140,70),Position = Vector2.new(10,300),Filled = false,Color = Color3.fromRGB(176,50,176),ZIndex = 1,Visible = true,Thickness = 1}),
+        frame = draw("Square",{Size = Vector2.new(138,67),Position = Vector2.new(11,301),Filled = true,Color = Color3.fromRGB(26,26,26),ZIndex = 2,Visible = true,Thickness = 0}),
+        status = draw("Text",{Size = 13,Font = 2,Position = Vector2.new(18,300),Color = Color3.fromRGB(244,244,244),Center = false,Outline = true,ZIndex = 3,Visible = true}),
     }
     local name2 = httpService:GenerateGUID()
     userInputService.InputBegan:Connect(onInputBegan)
@@ -56,9 +56,9 @@ do --script part
     --esp
     local function esp(targetPlayer)
         local espObjects = {
-            box = draw("Square", {Color = Color3.fromRGB(255, 255, 255), Thickness = 1.5, ZIndex = 1}),
+            box = draw("Square", {Color = Color3.fromRGB(255, 255, 255), Thickness = 1.5, ZIndex = 1,Transparency = 0.5}),
             tracer = draw("Line", {Color = Color3.fromRGB(255, 255, 255), ZIndex = 1, Transparency = 0.5}),
-            text = draw("Text", {Color = Color3.fromRGB(255, 255, 255), Center = true, Outline = true, ZIndex = 1, Size = 20}),
+            text = draw("Text", {Color = Color3.fromRGB(255, 255, 255),Font = 2, Center = true, Outline = true, ZIndex = 1, Size = 13}),
         }
         local name1 = httpService:GenerateGUID()
         runService:BindToRenderStep(name1, Enum.RenderPriority.Camera.Value, function()
@@ -67,9 +67,7 @@ do --script part
                 if character then 
                     local humanoid, humanoidRootPart, head = character:FindFirstChildOfClass("Humanoid"), character:FindFirstChild("HumanoidRootPart"), character:FindFirstChild('Head')
                     if humanoidRootPart and humanoid and humanoid.Health > 0 then
-                        local healthPercent = (humanoid.Health / humanoid.MaxHealth)
                         local screenPosition, onScreen = camera:WorldToViewportPoint(humanoidRootPart.Position)
-
                         local orientation = humanoidRootPart.CFrame
                         local height = (camera.CFrame - camera.CFrame.Position) * Vector3.new(0, 2.75, 0)
                         local screenHeight = math.abs(camera:WorldToScreenPoint(orientation.Position + height).Y - camera:WorldToScreenPoint(orientation.Position - height).Y)
@@ -77,7 +75,6 @@ do --script part
 
                         espObjects.box.Size = boxSize
                         espObjects.box.Position = round(Vector2.new(screenPosition.X, screenPosition.Y) - (boxSize / 2))
-                        espObjects.text.Font = 1
                         espObjects.text.Visible = onScreen
                         espObjects.text.Position = Vector2.new(((espObjects.box.Size.X / 2) + espObjects.box.Position.X), ((screenPosition.Y - espObjects.box.Size.Y / 2) - 18))
                         local distance = math.floor(player:DistanceFromCharacter(humanoidRootPart.Position))
