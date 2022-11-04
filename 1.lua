@@ -1,16 +1,20 @@
+if getgenv().data then
+    return
+else
+    getgenv().data = {
+        ESP = true,
+        Boxes = false,
+        Tracers = false,
+        Self = false,
+        UI = true
+    }
+end
 local runService = game:GetService('RunService')
 local httpService = game:GetService('HttpService')
 local userInputService = game:GetService('UserInputService')
 local players = game:GetService('Players')
 local player = players.LocalPlayer
 local camera = game.Workspace.CurrentCamera
-local data = {
-    ESP = true,
-    Boxes = false,
-    Tracers = false,
-    Self = false,
-    UI = true
-}
 do --script part
     function draw(type, properties)
         local drawing = Drawing.new(type)
@@ -23,7 +27,7 @@ do --script part
         return Vector2.new(vector.x - vector.x % 1, vector.y - vector.y % 1)
     end
     --ui
-    local function onInputBegan(input, _gameProcessed)
+    local function onInputBegan(input)
         if input.KeyCode == Enum.KeyCode.F1 then
             data.ESP = not data.ESP
         elseif input.KeyCode == Enum.KeyCode.F2 then
@@ -58,7 +62,7 @@ do --script part
         local espObjects = {
             box = draw("Square", {Color = Color3.fromRGB(255, 255, 255), Thickness = 1.5, ZIndex = 1,Transparency = 0.5}),
             tracer = draw("Line", {Color = Color3.fromRGB(255, 255, 255), ZIndex = 1, Transparency = 0.5}),
-            text = draw("Text", {Color = Color3.fromRGB(255, 255, 255),Font = 2, Center = true, Outline = true, ZIndex = 1, Size = 13}),
+            text = draw("Text", {Color = Color3.fromRGB(255, 255, 255),Font = 2, Center = true, Outline = true, ZIndex = 1, Size = 13,Transparency = 0.75}),
         }
         local name1 = httpService:GenerateGUID()
         runService:BindToRenderStep(name1, Enum.RenderPriority.Camera.Value, function()
@@ -117,13 +121,11 @@ do --script part
     for i,v in pairs(players:GetChildren()) do
         local targetPlayer = v
         local targetCharacter = v.Character
-
         if targetCharacter then 
             if targetCharacter:FindFirstChild("Humanoid") and targetCharacter:FindFirstChild("HumanoidRootPart") then 
                 esp(v)
             end
         end
-
         targetPlayer.CharacterAdded:Connect(function(character)
             character:WaitForChild("Humanoid")
             character:WaitForChild("HumanoidRootPart")
