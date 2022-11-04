@@ -117,7 +117,7 @@ do --script part
                         espObjects.box.Size = boxSize
                         espObjects.box.Position = round(Vector2.new(screenPosition.X, screenPosition.Y) - (boxSize / 2))
                         espObjects.text.Visible = onScreen
-                        espObjects.text.Position = Vector2.new(((espObjects.box.Size.X / 2) + espObjects.box.Position.X), ((screenPosition.Y - espObjects.box.Size.Y / 2) - 18))
+                        espObjects.text.Position = Vector2.new(((espObjects.box.Size.X / 2) + espObjects.box.Position.X), ((screenPosition.Y - espObjects.box.Size.Y / 2)))
                         espObjects.text.Text = targetPlayer.Name..("(%dm)"):format(distance)
 
                         if data.Tracers then
