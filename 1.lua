@@ -27,9 +27,9 @@ do --script part
         if input.KeyCode == Enum.KeyCode.F1 then
             data.ESP = not data.ESP
         elseif input.KeyCode == Enum.KeyCode.F2 then
-            data.Boxes = not data.Boxes
-        elseif input.KeyCode == Enum.KeyCode.F3 then
             data.Tracers = not data.Tracers
+        elseif input.KeyCode == Enum.KeyCode.F3 then
+            data.Boxes = not data.Boxes
         elseif input.KeyCode == Enum.KeyCode.F4 then
             data.Self = not data.Self
         elseif input.KeyCode == Enum.KeyCode.F5 then
